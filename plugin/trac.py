@@ -1271,6 +1271,15 @@ class TracTimelineWindow(NonEditableWindow):
 #########################
 # Main Class
 #########################
+def user_password_input():
+  vim.command('call inputsave()')
+  vim.command("let user_input_username = input('user name:')")
+  vim.command('call inputrestore()')
+  vim.command('call inputsave()')
+  vim.command("let user_input_password = inputsecret('password:')")
+  vim.command('call inputrestore()')
+  return vim.eval('user_input_username') + ":" + vim.eval('user_input_password')
+
 class Trac:
     """ Main Trac class """
     def __init__ (self, comment , server_list):
@@ -1279,6 +1288,8 @@ class Trac:
         self.server_list     = server_list
         self.server_url      = server_list.values()[0]
         self.server_name     = server_list.keys()[0]
+
+        self.server_url      = re.sub("@", user_password_input()+"@", self.server_url)
 
         self.default_comment = comment
         
@@ -1559,6 +1570,9 @@ def trac_init():
     trac = Trac(comment, server_list)
 
     browser = vim.eval ('g:tracBrowser')
+
+    trac.wiki_view()
+
 def trac_window_resize():
     global mode
     mode = mode + 1

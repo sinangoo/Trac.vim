@@ -252,7 +252,8 @@ com! -nargs=+ TQTaskOnVimTrac    python trac.ticket.create(<q-args> , 'task'    
 com! -nargs=+ TQDefectOnVimTrac  python trac.ticket.create(<q-args> , 'defect'      , 'Vim Trac')
 com! -nargs=+ TQEnhanceOnVimTrac python trac.ticket.create(<q-args> , 'enhancement' , 'Vim Trac')
 
-com! -nargs=? -complete=customlist,ComWiki        TWOpen          python trac.wiki_view  (<f-args>)
+"com! -nargs=? -complete=customlist,ComWiki        TWOpen          python trac.wiki_view  (<f-args>)
+com! -nargs=? -complete=customlist,ComWiki        TWOpen          python trac_init (<f-args>)
 
 fun LoadWikiCommands()
     "NOTE: TWSave is referenced in trac.py
@@ -507,5 +508,3 @@ fun TracCloseViewCallback()
     endt
     return 1
 endfun
-
-python trac_init()
