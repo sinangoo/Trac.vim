@@ -1554,7 +1554,7 @@ class Trac:
 #########################
 # VIM API FUNCTIONS
 #########################
-def trac_init():
+def trac_init(page=False):
     ''' Initialize Trac Environment '''
     global trac
     global browser
@@ -1571,7 +1571,7 @@ def trac_init():
 
     browser = vim.eval ('g:tracBrowser')
 
-    trac.wiki_view()
+    trac.wiki_view(page)
 
 def trac_window_resize():
     global mode
