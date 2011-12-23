@@ -1278,7 +1278,10 @@ def user_password_input():
   vim.command('call inputsave()')
   vim.command("let user_input_password = inputsecret('password:')")
   vim.command('call inputrestore()')
-  return vim.eval('user_input_username') + ":" + vim.eval('user_input_password')
+  user_password = vim.eval('user_input_username') + ":" + vim.eval('user_input_password')
+  vim.command("let user_input_username=''")
+  vim.command("let user_input_password=''")
+  return user_password
 
 class Trac:
     """ Main Trac class """
