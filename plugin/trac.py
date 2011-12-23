@@ -1292,7 +1292,7 @@ class Trac:
         self.server_url      = server_list.values()[0]
         self.server_name     = server_list.keys()[0]
 
-        self.server_url      = re.sub("@", user_password_input()+"@", self.server_url)
+        self.server_url      = re.sub("://", "://"+user_password_input()+"@", self.server_url)
 
         self.default_comment = comment
         
@@ -1320,7 +1320,7 @@ class Trac:
         if page == 'CURRENTLINE':
             page = vim.current.line
 
-        print 'Connecting...'
+        print ' Connecting...'
         self.normal_view()
 
         if (page == False):
